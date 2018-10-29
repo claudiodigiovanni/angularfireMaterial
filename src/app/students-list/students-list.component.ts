@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr'; // Alert message using NGX toastr
 
 import { CrudService } from '../shared/crud.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { DataSource } from '@angular/cdk/collections';
 
 
@@ -16,30 +16,44 @@ export class StudentsListComponent implements OnInit {
 
   constructor(private crud:CrudService, private toastr: ToastrService) { }
 
-  students$ : Observable<any>
+  //students$ : Observable<any>
+
+  displayedColumns : string[]
+  dataSource: DataSource<any>;
+
 
   ngOnInit() {
 
-   this.students$ = this.crud.getStudents().valueChanges();
+   //this.students$ = this.crud.getStudents().valueChanges();
+    console.log('.......ngOnInit.....')
+    this.displayedColumns = ['firstName','lastName', 'email','mobileNumber']
+    this.dataSource = new StudentDataSource(this.crud, this.toastr)
 
 
   }
 
-  displayedColumns: string[]= ['firstName','lastName', 'email','mobileNumber']
-
-  dataSource = new StudentDataSource(this.crud)
+  
 
   
 
 }
 
 export class StudentDataSource extends DataSource<any> {
-  constructor(private crud: CrudService) {
+
+  subscription:Subscription;
+
+  constructor(private crud: CrudService, private toastr: ToastrService) {
     super();
   }
   connect(): Observable<any> {
-    this.crud.getStudents().valueChanges().subscribe(item => console.log(item))
-    return this.crud.getStudents().valueChanges();
+    console.log('connect......')
+    //this.crud.getStudents().valueChanges().subscribe(item => console.log(item))
+    this.subscription = this.crud.getStudents().valueChanges().subscribe (item => this.toastr.info("Nuovo Studente..."))
+     return this.crud.getStudents().valueChanges();
+    
   }
-  disconnect() {}
+  disconnect() {
+    console.log('disconnect......')
+    this.subscription.unsubscribe();
+  }
 }
