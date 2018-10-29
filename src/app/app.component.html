@@ -1,25 +1,24 @@
 
 
-<mat-drawer-container class="example-container">
+<mat-drawer-container >
     <mat-drawer #drawer class="example-sidenav" mode="push">
      
         <mat-toolbar color="primary">
             <span>Title</span>
         </mat-toolbar>
-      <mat-nav-list >
-          <a mat-list-item href="">xxx</a>
-          <a mat-list-item href="">yyy</a>
+      <mat-nav-list (click)="drawer.close()" >
+          <a mat-list-item routerLink="/">List</a>
+          <a mat-list-item routerLink="/addStudent">Add</a>
       </mat-nav-list>
      
     </mat-drawer>
   
-    <div class="example-sidenav-content">
-            <mat-toolbar>
-                    <button mat-icon-button (click)="drawer.toggle()" >
-                        <mat-icon>menu</mat-icon>
-                    </button>
-            </mat-toolbar>
-            <router-outlet></router-outlet>
-    </div>
+    <mat-toolbar color="primary">
+            <button mat-icon-button (click)="drawer.toggle()" >
+                <mat-icon>menu</mat-icon>
+            </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+    
   
   </mat-drawer-container>
