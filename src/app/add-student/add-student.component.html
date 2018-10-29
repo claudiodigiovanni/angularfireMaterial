@@ -1,0 +1,20 @@
+
+  <form [formGroup]="studentForm" class="example-container">
+
+    <mat-form-field>
+      <input matInput placeholder="name" formControlName='firstName'>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <input matInput placeholder="lastName" formControlName='lastName'>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <input matInput placeholder="email" formControlName='email'>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <input matInput placeholder="mobileNumber" formControlName='mobileNumber'>
+    </mat-form-field>
+       <button mat-raised-button color="accent" (click)="submitStudentData()" [disabled]="!studentForm.valid">Invia</button>
+    </form>
