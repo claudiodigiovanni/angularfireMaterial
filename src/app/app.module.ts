@@ -15,7 +15,7 @@ import { StudentsListComponent } from './students-list/students-list.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {MatButtonModule, MatCheckboxModule, MatMenuModule, MatFormFieldModule, MatInputModule, MatIconModule, MatListModule, MatTableModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatMenuModule, MatFormFieldModule, MatInputModule, MatIconModule, MatListModule, MatTableModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -36,6 +36,8 @@ import { ToastrModule } from 'ngx-toastr';
     MatIconModule,
     MatListModule,
     MatTableModule,
+    MatSidenavModule,
+    MatToolbarModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(), // ToastrModule added

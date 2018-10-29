@@ -1,13 +1,25 @@
-<button mat-button [matMenuTriggerFor]="menuRef">
-    Trigger
-</button>
-
-<mat-menu #menuRef="matMenu" x-position="after" y-position="below"
-          [overlapTrigger]="false">
-    <a mat-menu-item routerLink='/'>List</a>
-    <a mat-menu-item routerLink='/addStudent'>Add</a>
-</mat-menu>
-
-<router-outlet></router-outlet>
 
 
+<mat-drawer-container class="example-container">
+    <mat-drawer #drawer class="example-sidenav" mode="push">
+     
+        <mat-toolbar color="primary">
+            <span>Title</span>
+        </mat-toolbar>
+      <mat-nav-list >
+          <a mat-list-item href="">xxx</a>
+          <a mat-list-item href="">yyy</a>
+      </mat-nav-list>
+     
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+            <mat-toolbar>
+                    <button mat-icon-button (click)="drawer.toggle()" >
+                        <mat-icon>menu</mat-icon>
+                    </button>
+            </mat-toolbar>
+            <router-outlet></router-outlet>
+    </div>
+  
+  </mat-drawer-container>
